@@ -330,6 +330,33 @@ fn searchByAuthor(author: &str, map: &HashMap <String, Book>){ //oi parametroi t
     }
 }
 
+//sunarthsh gia thn euresh me bash ton kwdiko isbn
+
+fn searchByIsbn(isbn: String , map: HashMap<String, Book>){
+    
+    let mut found = false;
+    for (key_isbn , book) in map{
+        if book.isbn == isbn {
+            println!("ID:{}\n", book.id);
+            println!("Τίτλος:{}",book.title);
+            println!("Συγγραφέας:{}\n",book.author);
+            println!("Έκδοση:{}\n",book.edition);
+            println!("Έτος:{}\n",book.year);
+            println!("Είδος:{}\n",book.kind);
+            found = true;
+        }
+    }
+    if !found
+    {
+        println!("Δεν βρέθηκε αυτό το βιβλίο.\n");
+    }
+}
+
+
+
+
+
+
 
 
 
@@ -438,5 +465,6 @@ fn main()
         Menu();
     }
 }
+
 
 
