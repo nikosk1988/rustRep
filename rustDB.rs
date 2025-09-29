@@ -352,6 +352,43 @@ fn searchByIsbn(isbn: String , map: HashMap<String, Book>){
     }
 }
 
+//sunarthsh gia thn euresh me bash to etos ekdoshs
+
+fn searchByYear(year: usize, map: &HashMap<usize, Book>){
+
+    let mut found = false; 
+
+    for (key, book) in map {
+        if book.year == year{
+            println!("ID:{}\n", book.id);
+            println!("Τίτλος:{}",book.title);
+            println!("Συγγραφέας:{}\n",book.author);
+            println!("Έκδοση:{}\n",book.edition);
+            println!("Έτος:{}\n",book.year);
+            println!("Είδος:{}\n",book.kind);
+            found = true;
+        }
+    
+        
+    }
+    if !found {
+            println!("Δεν υπάρχει βιβλίο τέτοιου έτους. \n");
+        }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -465,6 +502,7 @@ fn main()
         Menu();
     }
 }
+
 
 
 
