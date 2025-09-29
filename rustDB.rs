@@ -51,6 +51,46 @@ fn searchById(id: i32, idvec: &Vec<i32>, titlevec: &Vec<&str>, authorvec: &Vec<&
     }
 }
 
+
+//sunarthsh gia thn euresh mesw titlou
+fn searchById(title: &str, idvec: &Vec<i32>, titlevec: &Vec<&str>, authorvec: &Vec<&str>, isbnvec: &Vec<&str>, editionvec: &Vec<i32>, yearvec: &Vec<i32>, kindvec: &Vec<&str>){ //oi parametroi tha einai vectors(oxi pinakes) me ta stoixeia 3exwrista
+    
+    let mut found: bool = false; 
+    let mut i: usize = 0; 
+    let mut size: usize = titlevec.len()-1;
+    let mut pos: usize = 0;
+    
+    if (size >=0 )
+    {
+        while (i <= size)&&(found==false)
+        {
+            if (titlevec[i] == title)
+            {
+                found = true;
+                pos = i;
+                break;
+            }
+            else {
+                i +=1;
+            }
+        }
+    }
+    else 
+    {
+        println!("Δεν υπάρχει κανένα βιβλίο μέσα στη βάση!\n");
+    }
+    
+    
+    if (found == true){
+        println!("{} {} {} {} {} {} {}", idvec[pos], title, authorvec[pos], isbnvec[pos], editionvec[pos], yearvec[pos], kindvec[pos] );
+    }
+    else {
+        println!("Το βιβλίο με τίτλο {} δε βρέθηκε!", title);
+    }
+}
+
+
+
 fn subMenu1()  {
     
     println!("---Αναζήτηση στη Βάση Δεδομένων ---");
