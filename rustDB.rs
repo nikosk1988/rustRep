@@ -16,10 +16,15 @@ fn database(){
     println!("\n");
     //kalei antistoixh sunarthsh pou tha epistrefei ta antistoixa dedomena kai tha ta emfanizei
     subMenu1();
+}
+
+//sunarthsh gia thn euresh mesw id
+fn searchById(){ //oi parametroi tha einai vectors(oxi pinakes) me ta stoixeia 3exwrista
+
     
 }
 
-fn subMenu1() -> i32 {
+fn subMenu1()  {
     
     println!("---Αναζήτηση στη Βάση Δεδομένων ---");
     println!("1. Με το id");
@@ -38,19 +43,44 @@ fn subMenu1() -> i32 {
     
     let mut sel1: i32 = input.trim().parse().expect("Δώσε μια απ' τις παραπάνω επιλογές: \t");
 
-    match sel1 
-    {
-    
-    1 =>{    
-        println!("Αναζήτη με το ID του βιβλίου");
-        let mut input = String:: new();
-        println!("ID:\t");
-        std::io::stdin().read_line(&mut input).expect("ERROR");
-        let id: i32 = input.trim().parse();
-        //Ok(id)
-        }
+     match sel1 {
+        1 => {
+            println!("Αναζήτηση με το ID του βιβλίου");
+            let mut id_input = String::new();
+            println!("ID:");
+            std::io::stdin().read_line(&mut id_input).expect("ERROR");
+
+            let id: i32 = match id_input.trim().parse() {
+                Ok(n) => n,
+                Err(_) => {
+                    println!("Μη έγκυρο ID!");
+                    return;
+                }
+            };
+
+            println!("Αναζητείται βιβλίο με ID: {}", id);
+            //kalw to function gia thn anazhthsh me to antistoixo id
+            searchById(id);
+        },
         
-        //let mut id: i32 = input.trim().parse().expect("ID:\t");
+        2 => {
+            println!("Αναζήτηση με τίτλο");
+        },
+        3 => {
+            println!("Αναζήτηση με όνομα συγγραφέα");
+        },
+        4 => {
+            println!("Αναζήτηση με ISBN");
+        },
+        5 => {
+            println!("Αναζήτηση με έτος έκδοσης");
+        },
+        6 => {
+            println!("Αναζήτηση με είδος βιβλίου");
+        },
+        _ => {
+            println!("Μη έγκυρη επιλογή!");
+        },
     }
     
 }
@@ -94,5 +124,4 @@ fn main()
         Menu();
     }
 }
-
 
