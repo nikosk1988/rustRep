@@ -19,9 +19,36 @@ fn database(){
 }
 
 //sunarthsh gia thn euresh mesw id
-fn searchById(){ //oi parametroi tha einai vectors(oxi pinakes) me ta stoixeia 3exwrista
-
+fn searchById(id: i32, idvec: &Vec<i32>, titlevec: &Vec<&str>, authorvec: &Vec<&str>, isbnvec: &Vec<&str>, editionvec: &Vec<i32>, yearvec: &Vec<i32>, kindvec: &Vec<&str>){ //oi parametroi tha einai vectors(oxi pinakes) me ta stoixeia 3exwrista
     
+    let mut mid: usize = 0; //deikths mesaias theshs
+    let mut l: usize = 0; //aristeros deikths
+    let mut r: usize = idvec.len() - 1; //de3ios deikths
+    let key: i32 = id;  //to id pou anazhtw
+    let mut found: bool = false; 
+    
+    while (l <= r)&&(found==false){
+        mid = (l+r)/2;
+        if(idvec[mid] == key){
+            found = true;
+        }
+        else if (idvec[mid] < key){
+            l = mid + 1;
+        }
+        else {
+            if mid == 0 {
+                break;
+            }
+            r = mid - 1;
+        }
+    }
+    
+    if (found == true){
+        println!("{} {} {} {} {} {} {}", idvec[mid], titlevec[mid], authorvec[mid], isbnvec[mid], editionvec[mid], yearvec[mid], kindvec[mid] );
+    }
+    else {
+        println!("Το βιβλίο με id {} δε βρέθηκε!", key);
+    }
 }
 
 fn subMenu1()  {
