@@ -53,7 +53,7 @@ fn searchById(id: i32, idvec: &Vec<i32>, titlevec: &Vec<&str>, authorvec: &Vec<&
 
 
 //sunarthsh gia thn euresh mesw titlou
-fn searchById(title: &str, idvec: &Vec<i32>, titlevec: &Vec<&str>, authorvec: &Vec<&str>, isbnvec: &Vec<&str>, editionvec: &Vec<i32>, yearvec: &Vec<i32>, kindvec: &Vec<&str>){ //oi parametroi tha einai vectors(oxi pinakes) me ta stoixeia 3exwrista
+fn searchByTitle(title: &str, idvec: &Vec<i32>, titlevec: &Vec<&str>, authorvec: &Vec<&str>, isbnvec: &Vec<&str>, editionvec: &Vec<i32>, yearvec: &Vec<i32>, kindvec: &Vec<&str>){ //oi parametroi tha einai vectors(oxi pinakes) me ta stoixeia 3exwrista
     
     let mut found: bool = false; 
     let mut i: usize = 0; 
@@ -88,6 +88,46 @@ fn searchById(title: &str, idvec: &Vec<i32>, titlevec: &Vec<&str>, authorvec: &V
         println!("Το βιβλίο με τίτλο {} δε βρέθηκε!", title);
     }
 }
+
+//sunarthsh gia thn euresh mesw suggrafea
+fn searchByAuthor(author: &str, idvec: &Vec<i32>, titlevec: &Vec<&str>, authorvec: &Vec<&str>, isbnvec: &Vec<&str>, editionvec: &Vec<i32>, yearvec: &Vec<i32>, kindvec: &Vec<&str>){ //oi parametroi tha einai vectors(oxi pinakes) me ta stoixeia 3exwrista
+    
+    let mut found: bool = false; 
+    let mut i: usize = 0; 
+    let mut size: usize = authorvec.len()-1;
+    let mut pos: usize = 0;
+    
+    if (size >=0 )
+    {
+        while (i <= size)&&(found==false)
+        {
+            if (authorvec[i] == author)
+            {
+                found = true;
+                pos = i;
+                break;
+            }
+            else {
+                i +=1;
+            }
+        }
+    }
+    else 
+    {
+        println!("Δεν υπάρχει κανένα βιβλίο μέσα στη βάση!\n");
+    }
+    
+    
+    if (found == true){
+        println!("{} {} {} {} {} {} {}", idvec[pos], author, titlevec[pos], isbnvec[pos], editionvec[pos], yearvec[pos], kindvec[pos] );
+    }
+    else {
+        println!("Το βιβλίο με συγγραφέα {} δε βρέθηκε!", author);
+    }
+}
+
+
+
 
 
 
