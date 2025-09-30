@@ -376,6 +376,38 @@ fn searchByYear(year: usize, map: &HashMap<usize, Book>){
         }
     
 }
+//sunarthsh gia thn euresh me bash to eidos
+
+fn searchByKind(kind: &str, map: &HashMap <String, Book>){
+    
+    let mut found = false;
+    
+    for(key, book) in map {
+        if book.kind == kind {
+            println!("ID:{}\n", book.id);
+            println!("Τίτλος:{}",book.title);
+            println!("Συγγραφέας:{}\n",book.author);
+            println!("Έκδοση:{}\n",book.edition);
+            println!("Έτος:{}\n",book.year);
+            found = true;
+        }
+    }
+    if !found {
+        println!("Δεν υπάρχει αυτό το είδος του/των βιβλίων.");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -506,3 +538,302 @@ fn main()
 
 
 
+
+
+
+// 3h prospatheia 
+
+
+use std::io;
+use std::collections::HashMap;
+
+
+
+struct Book {
+    id: usize;
+    title: String;
+    author: String;
+    isbn: String;
+    edition: usize;
+    year: usize;
+    kind: String;
+}
+
+// dhmiourgia menu epilogwn
+fn Menu(){
+    println!("---MENU---");
+    println!("1. Άνοιγμα Βάσης Δεδομένων");
+    println!("2. Προσθήκη νέου βιβλίου");
+    println!("3. Διαγραφή Βάσης Δεδομένων");
+    println!("4. νημέρωση Βάσης Δεδομένων");
+    println!("5. Έξοδος");
+}
+
+fn database(map: &HashMap<usize, Book>){
+    //menu pou tha epilegei tupo anazhthseis p.x. ana titlo, ana suggrafea klp
+    println!("\n");
+    //kalei antistoixh sunarthsh pou tha epistrefei ta antistoixa dedomena kai tha ta emfanizei
+    subMenu1(map);
+}
+
+//sunarthsh gia thn euresh mesw id
+fn searchById(id: usize,map: &HashMap< usize, Book>){ //oi parametroi tha einai vectors(oxi pinakes) me ta stoixeia 3exwrista
+    
+   
+    
+    if let Some(book) = map.get(&id){
+        println!("Tίτλος:{}\n", book.title);
+        println!("Συγγραφέας:{}",book.author);
+        println!("ISBN:{}\n",book.isbn);println!("Έκδοση:{}\n",book.edition);println!("Έτος:{}\n",book.year);println!("Είδος:{}\n",book.kind);
+    }
+    else
+    {
+        println!("Δεν υπάρχει αυτό το id!");
+    }
+}
+
+
+//sunarthsh gia thn euresh mesw titlou
+fn searchByTitle(title: &str, map: &HashMap<String, titleId>){ //oi parametroi tha einai vectors(oxi pinakes) me ta stoixeia 3exwrista
+    
+    if let Some(book) = map.get(title) {
+         println!("ID:{}\n", book.id);
+        println!("Συγγραφέας:{}",book.author);
+        println!("ISBN:{}\n",book.isbn);println!("Έκδοση:{}\n",book.edition);println!("Έτος:{}\n",book.year);println!("Είδος:{}\n",book.kind);
+    }
+    else {
+        println!("Το βιβλίο με τίτλο {} δε βρέθηκε!", title);
+    }
+}
+
+//sunarthsh gia thn euresh mesw suggrafea
+fn searchByAuthor(author: &str, map: &HashMap <String, Book>){ //oi parametroi tha einai vectors(oxi pinakes) me ta stoixeia 3exwrista
+    
+    let mut found = false;
+    
+    for (title, book) in map {
+    if book.author == author
+   {
+        println!("ID:{}\n", book.id);
+        println!("Τίτλος:{}",book.title);
+        println!("ISBN:{}\n",book.isbn);
+        println!("Έκδοση:{}\n",book.edition);
+        println!("Έτος:{}\n",book.year);
+        println!("Είδος:{}\n",book.kind);
+        found = true;
+       
+   }
+    }
+   
+    if !found  
+    {
+        println!("Δεν υπάρχει κανένα βιβλίο μέσα στη βάση!\n");
+    }
+}
+
+//sunarthsh gia thn euresh me bash ton kwdiko isbn
+
+fn searchByIsbn(isbn: String , map: HashMap<String, Book>){
+    
+    let mut found = false;
+    for (key_isbn , book) in map{
+        if book.isbn == isbn {
+            println!("ID:{}\n", book.id);
+            println!("Τίτλος:{}",book.title);
+            println!("Συγγραφέας:{}\n",book.author);
+            println!("Έκδοση:{}\n",book.edition);
+            println!("Έτος:{}\n",book.year);
+            println!("Είδος:{}\n",book.kind);
+            found = true;
+        }
+    }
+    if !found
+    {
+        println!("Δεν βρέθηκε αυτό το βιβλίο.\n");
+    }
+}
+
+//sunarthsh gia thn euresh me bash to etos ekdoshs
+
+fn searchByYear(year: usize, map: &HashMap<usize, Book>){
+
+    let mut found = false; 
+
+    for (key, book) in map {
+        if book.year == year{
+            println!("ID:{}\n", book.id);
+            println!("Τίτλος:{}",book.title);
+            println!("Συγγραφέας:{}\n",book.author);
+            println!("Έκδοση:{}\n",book.edition);
+            println!("Έτος:{}\n",book.year);
+            println!("Είδος:{}\n",book.kind);
+            found = true;
+        }
+    
+        
+    }
+    if !found {
+            println!("Δεν υπάρχει βιβλίο τέτοιου έτους. \n");
+        }
+    
+}
+
+//sunarthsh gia thn euresh me bash to eidos
+
+fn searchByKind(kind: &str, map: &HashMap <String, Book>){
+    
+    let mut found = false;
+    
+    for(key, book) in map {
+        if book.kind == kind {
+            println!("ID:{}\n", book.id);
+            println!("Τίτλος:{}",book.title);
+            println!("Συγγραφέας:{}\n",book.author);
+            println!("Έκδοση:{}\n",book.edition);
+            println!("Έτος:{}\n",book.year);
+            found = true;
+        }
+    }
+    if !found {
+        println!("Δεν υπάρχει αυτό το είδος του/των βιβλίων.");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fn subMenu1(map: &HashMap<usize, Book>)  {
+    
+    println!("---Αναζήτηση στη Βάση Δεδομένων ---");
+    println!("1. Με το id");
+    println!("2. Με τον τίτλο");
+    println!("3. Με το όνομα του συγγραφέα");
+    println!("4. Με τον κωδικό isbn");
+    println!("5. Με το έτος έκδοσης του βιβλίου");
+    println!("6. Με το είδος του βιβλίου");
+    
+    //dialegw epilogh analoga me to ti thelw na kanw
+    
+    let mut input = String::new();
+    println!("Επέλεξε τι από το παραπάνω menu θες να κάνεις: \t");
+    std::io::stdin().read_line(&mut input).expect("ERROR");
+
+    
+    let mut sel1: i32 = input.trim().parse().expect("Δώσε μια απ' τις παραπάνω επιλογές: \t");
+
+     match sel1 {
+        1 => {
+            println!("Αναζήτηση με το ID του βιβλίου");
+            let mut id_input = String::new();
+            println!("ID:");
+            std::io::stdin().read_line(&mut id_input).expect("ERROR");
+
+            let id: i32 = match id_input.trim().parse() {
+                Ok(n) => n,
+                Err(_) => {
+                    println!("Μη έγκυρο ID!");
+                    return;
+                }
+            };
+
+            println!("Αναζητείται βιβλίο με ID: {}", id);
+            //kalw to function gia thn anazhthsh me to antistoixo id
+            //searchById(id);
+            searchById(id, Book);
+        },
+        
+        2 => {
+            println!("Αναζήτηση με τίτλο");
+            let mut titleId: HashMap<String, usize> = HashMap::new();
+            searchByTitle(title,titleId);
+        },
+        3 => {
+            println!("Αναζήτηση με όνομα συγγραφέα");
+            searchByAuthor(author,Book);
+        },
+        4 => {
+            println!("Αναζήτηση με ISBN");
+            searchByIsbn(isbn,Book);
+        },
+        5 => {
+            println!("Αναζήτηση με έτος έκδοσης");
+            searchByYear(year,Book);
+        },
+        6 => {
+            println!("Αναζήτηση με είδος βιβλίου");
+            searchByKind(kind,Book);
+        },
+        _ => {
+            println!("Μη έγκυρη επιλογή!");
+        },
+    }
+    
+}
+
+
+fn main()
+{
+    
+    let mut id: usize;
+    let mut title: String;
+    let mut author: String;
+    let mut isbn: String;
+    let mut edition: usize;
+    let mut year: usize;
+    let mut kind: String;
+
+    
+    let mut map: HashMap<usize, Book> = HashMap::new();
+
+    println!("Δώσε μια επιλογή από τις παρακάτω:");
+    //eisagwgh menu
+    Menu();
+    println!("\n");
+    let mut input = String::new();
+    io::stdin()
+    .read_line(&mut input);
+    //.expect("Αποτυχία ανάγνωσης επιλογής");
+    
+    let mut selection: i32 = input.trim().parse().expect("Δώσε μια απ' τις παραπάνω επιλογές: \t");
+    
+    //elegxos epilogwn
+    
+    if (selection == 1){
+        println!("Βάση Δεδομένων");
+        database(id, Books);
+    }
+    else if (selection == 2){
+        println!("Προσθήκη νέου");
+    }
+    else if (selection == 3){
+        println!("Διαγραφή βάσης");
+    }
+    else if (selection == 4){
+        println!("Ενημέρωση βασης");
+    }
+    else if(selection == 5){
+        println!("Αντίο");
+        std::process::exit(0);
+    }
+    else {
+        println!("Λάθος επιλογή! Δώσε μια σωστή επιλογή! \n");
+        Menu();
+    }
+}
